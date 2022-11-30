@@ -3,7 +3,6 @@ const globalId = 4
 module.exports = {
     getHouse: (req, res) =>{
         res.status(200).send(houses)
-        // console.log(req.params)
     },
     deleteHouse: (req, res) =>{
         let {id} = req.params
@@ -19,8 +18,23 @@ module.exports = {
         globalId ++
     },
     updateHouse: (req, res) =>{
-        //ask garrett about this later
-        let {id} = req.params
-        let {type} = req.body
+        let {houseId} = req.params
+        let {type} = req.body 
+
+        let houseIndex = houses.findIndex(el => el.id === +houseId);
+
+        let house = houses[houseIndex];
+
+        // Error Checking
+        if (type === 'plus'){
+            house.price += 10000;
+            res.status(200).send(houses);
+        } else if (type === 'minus'){
+            house.price -= 10000;
+            res.status(200).send(houses);
+        } else {
+            res.status(400);
+        }
+
     },
 }
