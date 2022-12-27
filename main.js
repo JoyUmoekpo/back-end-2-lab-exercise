@@ -54,7 +54,7 @@ function displayHouses(arr) {
     for (let i = 0; i < arr.length; i++) {
         createHouseCard(arr[i])
     }
-}
+} 
 
 form.addEventListener('submit', submitHandler)
 
